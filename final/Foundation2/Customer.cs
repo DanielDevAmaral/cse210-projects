@@ -1,33 +1,21 @@
 class Customer
 {
-    private string _name;
-    private Address _address;
+    private string name;
+    private Address address;
 
-    public Customer(string name, Address addres)
+    public Customer(string name, Address address)
     {
-        _name = name;
-        _address = addres;
+        this.name = name;
+        this.address = address;
     }
 
-    public string GetName()
+    public bool IsInUSA()
     {
-        return _name;
+        return address.IsInUSA();
     }
 
-    public string GetAddress()
+    public string GetAddressString()
     {
-        return _address.Gathering();
+        return address.ToString();
     }
-        public bool IsInAmerica()
-    {
-        if (_address.GetCoutry() == "USA")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
 }

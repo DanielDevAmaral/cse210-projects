@@ -1,31 +1,23 @@
-using Microsoft.VisualBasic;
-
 class Product
 {
-    private string _name;
-    private int _productID;
-    private int _quantity;
-    private double _price;
+    private string name;
+    private string productId;
+    private double price;
+    private int quantity;
 
-    public Product (string nameoftheProduct, int id, int quantity, double price)
+    public Product(string name, string productId, double price, int quantity)
     {
-        _name = nameoftheProduct;
-        _productID = id;
-        _quantity = quantity;
-        _price = price;
-    }
-
-    public string GetName()
-    {
-        return _name;
-    }
-    public int GetID()
-    {
-        return _productID;
-    }
-    public double TotalPrice()
-    {
-        return _quantity * _price;
+        this.name = name;
+        this.productId = productId;
+        this.price = price;
+        this.quantity = quantity;
     }
 
+    public double CalculateProductPrice()
+    {
+        return price * quantity;
+    }
+
+    public string Name { get { return name; } }
+    public string ProductId { get { return productId; } }
 }

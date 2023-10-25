@@ -1,35 +1,25 @@
 class Address
 {
-    private string _street;
-    private string _city;
-    private string _country;
+    private string streetAddress;
+    private string city;
+    private string state;
+    private string country;
 
-    public Address(string street, string city, string country)
+    public Address(string streetAddress, string city, string state, string country)
     {
-        _street = street;
-        _city = city;
-        _country = country;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.country = country;
     }
 
-    public string GetCoutry()
+    public bool IsInUSA()
     {
-        return _country;
+        return country == "USA";
     }
 
-    public bool IsInAmerica()
+    public override string ToString()
     {
-        if (_country == "USA")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return $"{streetAddress}\n{city}, {state}\n{country}";
     }
-    public string Gathering()
-    {
-        return $"{_street}, {_city} - {_country}";
-    } 
-
 }

@@ -1,63 +1,46 @@
 class Order
 {
-    private List<Product> _products = new List<Product>();
-    private Customer _customer;
-    private Address _address;
-    private int _packingLabel;
-    private int _shippingLabel;
-    private double test;
+    private List<Product> products;
+    private Customer customer;
 
-    public double TotalCost() //totalPrice
+    public Order(Customer customer)
     {
-        foreach(Product item in _products)
-        {
-            test += item.TotalPrice();
-        }
-        return test;
+        this.customer = customer;
+        this.products = new List<Product>();
     }
 
-    public int Shipping()
+    public void AddProduct(Product product)
     {
-        if (_address.IsInAmerica() == true)
+        products.Add(product);
+    }
+
+    public string GetPackingLabel()
+    {
+        string label = "Packing Label:\n";
+        foreach (var product in products)
         {
-            _shippingLabel = 5;
+            label += $"{product.Name} (ID: {product.ProductId})\n";
         }
+        return label;
+    }
+
+    public string GetShippingLabel()
+    {
+        return "Shipping Label:\n" + customer.GetAddressString();
+    }
+
+    public double CalculateTotalPrice()
+    {
+        double totalPrice = 0;
+        foreach (var product in products)
+        {
+            totalPrice += product.CalculateProductPrice();
+        }
+        if (customer.IsInUSA())
+            totalPrice += 5.0;
         else
-        {
-            _shippingLabel = 35;
-        }
-        return _shippingLabel;
+            totalPrice += 35.0;
+
+        return totalPrice;
     }
-
-    public string PackingLabel()
-    {
-        foreach(Product itens in _products)
-        {
-            return $"Label\n Name: {itens.GetName()} Id: {itens.GetID()}";
-        }
-        
-    }
-    public string ShippingLabel()
-    {
-        return $"Shipping Label\n Name:{_customer.GetName()} Address: {_customer.GetAddress()}";
-    }
-
-    public void Display()
-    {
-        Console.WriteLine(PackingLabel());
-        Console.WriteLine(ShippingLabel());
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
 }
