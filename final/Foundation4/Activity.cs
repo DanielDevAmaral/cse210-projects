@@ -1,7 +1,7 @@
 class Activity
 {
     private DateTime date;
-    protected int minutes; // Change access modifier to protected
+    protected int minutes;
 
     public Activity(DateTime date, int minutes)
     {
